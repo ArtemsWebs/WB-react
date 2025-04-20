@@ -10,20 +10,26 @@
     "generate-back-types": "npx openapi-typescript-codegen --input ./fakestoreapi.json --output src/shared/api"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.2",
+    "@pbe/react-yandex-maps": "^1.2.5",
     "@tanstack/react-query": "^5.74.4",
     "@tanstack/react-router": "^1.116.0",
     "@tanstack/react-router-devtools": "^1.116.0",
     "@tanstack/react-router-with-query": "^1.116.0",
     "@tanstack/react-start": "^1.116.1",
+    "leaflet": "^1.9.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
+    "react-leaflet": "^5.0.0",
     "redaxios": "^0.5.1",
     "tailwind-merge": "^2.6.0",
-    "vinxi": "0.5.3"
+    "vinxi": "0.5.3",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.73.3",
+    "@types/leaflet": "^1.9.17",
     "@types/node": "^22.5.4",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",

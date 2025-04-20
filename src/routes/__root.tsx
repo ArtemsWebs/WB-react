@@ -79,7 +79,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <Navigation />
-        {children}
+        <div className="p-4 max-w-[1440px] mx-auto">{children}</div>
         <TanStackRouterDevtools position="bottom-right" />
         <Scripts />
       </body>

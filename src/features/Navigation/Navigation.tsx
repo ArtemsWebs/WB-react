@@ -9,12 +9,22 @@ import { useWindowSize } from "~/shared/hooks/useWindowSize";
 import { AiOutlineHome } from "react-icons/ai";
 import { MdScreenSearchDesktop } from "react-icons/md";
 import { GoHeart } from "react-icons/go";
+import { useBasketGoods } from "~/entitites/good/store/basketGoods";
+import { Badge } from "~/shared/ui/Badge";
 
 import StyledLink from "./ui/StyledLink";
 import { SearchInput } from "./ui/SearchInput";
+import {
+  BasketIcon,
+  HomeIcon,
+  ProfileIcon,
+  SearchIcon,
+} from "~/shared/ui/icons";
 
 export const Navigation = () => {
   const { isMobile } = useWindowSize();
+  const goods = useBasketGoods((state) => state.goods);
+
   return (
     <div>
       <nav className="p-4 bg-gradient-to-r from-purple-500 to-pink-500 justify-center flex items-center gap-4 mx-auto my-0">
@@ -38,7 +48,7 @@ export const Navigation = () => {
         {!isMobile && (
           <ul className="flex justify-start  space-x-6 items-center">
             <li>
-              <StyledLink to="/posts">
+              <StyledLink to="/address">
                 <IoLocationOutline size={24} />
                 <span>Адрес</span>
               </StyledLink>
@@ -50,8 +60,11 @@ export const Navigation = () => {
               </StyledLink>
             </li>
             <li>
-              <StyledLink to="/basket">
+              <StyledLink to="/basket" className="relative">
                 <BsBasket3 size={24} />
+                {goods.length > 0 && (
+                  <Badge className="right-[10px]">{goods.length}</Badge>
+                )}
                 <span>Корзина</span>
               </StyledLink>
             </li>
@@ -63,17 +76,18 @@ export const Navigation = () => {
           <ul className="flex justify-around">
             <li>
               <Link to="/">
-                <AiOutlineHome size={24} />
+                <HomeIcon />
               </Link>
             </li>
             <li>
-              <Link to="/">
-                <MdScreenSearchDesktop size={24} />
+              <Link to="/address">
+                <SearchIcon />
               </Link>
             </li>
-            <li>
-              <Link to="/">
-                <BsBasket3 size={24} />
+            <li className="relative">
+              <Link to="/basket">
+                <BasketIcon />
+                {goods.length > 0 && <Badge>{goods.length}</Badge>}
               </Link>
             </li>
             <li>
@@ -83,7 +97,7 @@ export const Navigation = () => {
             </li>
             <li>
               <Link to="/">
-                <IoPersonCircleOutline size={24} />
+                <ProfileIcon />
               </Link>
             </li>
           </ul>

@@ -12,8 +12,10 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as RedirectImport } from './routes/redirect'
+import { Route as PickupPointsImport } from './routes/pickup-points'
 import { Route as DeferredImport } from './routes/deferred'
 import { Route as BasketImport } from './routes/basket'
+import { Route as AddressImport } from './routes/address'
 import { Route as PathlessLayoutImport } from './routes/_pathlessLayout'
 import { Route as UsersRouteImport } from './routes/users.route'
 import { Route as PostsRouteImport } from './routes/posts.route'
@@ -35,6 +37,12 @@ const RedirectRoute = RedirectImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const PickupPointsRoute = PickupPointsImport.update({
+  id: '/pickup-points',
+  path: '/pickup-points',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const DeferredRoute = DeferredImport.update({
   id: '/deferred',
   path: '/deferred',
@@ -44,6 +52,12 @@ const DeferredRoute = DeferredImport.update({
 const BasketRoute = BasketImport.update({
   id: '/basket',
   path: '/basket',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AddressRoute = AddressImport.update({
+  id: '/address',
+  path: '/address',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -153,6 +167,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PathlessLayoutImport
       parentRoute: typeof rootRoute
     }
+    '/address': {
+      id: '/address'
+      path: '/address'
+      fullPath: '/address'
+      preLoaderRoute: typeof AddressImport
+      parentRoute: typeof rootRoute
+    }
     '/basket': {
       id: '/basket'
       path: '/basket'
@@ -165,6 +186,13 @@ declare module '@tanstack/react-router' {
       path: '/deferred'
       fullPath: '/deferred'
       preLoaderRoute: typeof DeferredImport
+      parentRoute: typeof rootRoute
+    }
+    '/pickup-points': {
+      id: '/pickup-points'
+      path: '/pickup-points'
+      fullPath: '/pickup-points'
+      preLoaderRoute: typeof PickupPointsImport
       parentRoute: typeof rootRoute
     }
     '/redirect': {
@@ -298,8 +326,10 @@ export interface FileRoutesByFullPath {
   '/posts': typeof PostsRouteRouteWithChildren
   '/users': typeof UsersRouteRouteWithChildren
   '': typeof PathlessLayoutNestedLayoutRouteWithChildren
+  '/address': typeof AddressRoute
   '/basket': typeof BasketRoute
   '/deferred': typeof DeferredRoute
+  '/pickup-points': typeof PickupPointsRoute
   '/redirect': typeof RedirectRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/users/$userId': typeof UsersUserIdRoute
@@ -313,8 +343,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '': typeof PathlessLayoutNestedLayoutRouteWithChildren
+  '/address': typeof AddressRoute
   '/basket': typeof BasketRoute
   '/deferred': typeof DeferredRoute
+  '/pickup-points': typeof PickupPointsRoute
   '/redirect': typeof RedirectRoute
   '/posts/$postId': typeof PostsPostIdRoute
   '/users/$userId': typeof UsersUserIdRoute
@@ -331,8 +363,10 @@ export interface FileRoutesById {
   '/posts': typeof PostsRouteRouteWithChildren
   '/users': typeof UsersRouteRouteWithChildren
   '/_pathlessLayout': typeof PathlessLayoutRouteWithChildren
+  '/address': typeof AddressRoute
   '/basket': typeof BasketRoute
   '/deferred': typeof DeferredRoute
+  '/pickup-points': typeof PickupPointsRoute
   '/redirect': typeof RedirectRoute
   '/_pathlessLayout/_nested-layout': typeof PathlessLayoutNestedLayoutRouteWithChildren
   '/posts/$postId': typeof PostsPostIdRoute
@@ -351,8 +385,10 @@ export interface FileRouteTypes {
     | '/posts'
     | '/users'
     | ''
+    | '/address'
     | '/basket'
     | '/deferred'
+    | '/pickup-points'
     | '/redirect'
     | '/posts/$postId'
     | '/users/$userId'
@@ -365,8 +401,10 @@ export interface FileRouteTypes {
   to:
     | '/'
     | ''
+    | '/address'
     | '/basket'
     | '/deferred'
+    | '/pickup-points'
     | '/redirect'
     | '/posts/$postId'
     | '/users/$userId'
@@ -381,8 +419,10 @@ export interface FileRouteTypes {
     | '/posts'
     | '/users'
     | '/_pathlessLayout'
+    | '/address'
     | '/basket'
     | '/deferred'
+    | '/pickup-points'
     | '/redirect'
     | '/_pathlessLayout/_nested-layout'
     | '/posts/$postId'
@@ -400,8 +440,10 @@ export interface RootRouteChildren {
   PostsRouteRoute: typeof PostsRouteRouteWithChildren
   UsersRouteRoute: typeof UsersRouteRouteWithChildren
   PathlessLayoutRoute: typeof PathlessLayoutRouteWithChildren
+  AddressRoute: typeof AddressRoute
   BasketRoute: typeof BasketRoute
   DeferredRoute: typeof DeferredRoute
+  PickupPointsRoute: typeof PickupPointsRoute
   RedirectRoute: typeof RedirectRoute
   PostsPostIdDeepRoute: typeof PostsPostIdDeepRoute
 }
@@ -411,8 +453,10 @@ const rootRouteChildren: RootRouteChildren = {
   PostsRouteRoute: PostsRouteRouteWithChildren,
   UsersRouteRoute: UsersRouteRouteWithChildren,
   PathlessLayoutRoute: PathlessLayoutRouteWithChildren,
+  AddressRoute: AddressRoute,
   BasketRoute: BasketRoute,
   DeferredRoute: DeferredRoute,
+  PickupPointsRoute: PickupPointsRoute,
   RedirectRoute: RedirectRoute,
   PostsPostIdDeepRoute: PostsPostIdDeepRoute,
 }
@@ -431,8 +475,10 @@ export const routeTree = rootRoute
         "/posts",
         "/users",
         "/_pathlessLayout",
+        "/address",
         "/basket",
         "/deferred",
+        "/pickup-points",
         "/redirect",
         "/posts_/$postId/deep"
       ]
@@ -460,11 +506,17 @@ export const routeTree = rootRoute
         "/_pathlessLayout/_nested-layout"
       ]
     },
+    "/address": {
+      "filePath": "address.tsx"
+    },
     "/basket": {
       "filePath": "basket.tsx"
     },
     "/deferred": {
       "filePath": "deferred.tsx"
+    },
+    "/pickup-points": {
+      "filePath": "pickup-points.tsx"
     },
     "/redirect": {
       "filePath": "redirect.tsx"

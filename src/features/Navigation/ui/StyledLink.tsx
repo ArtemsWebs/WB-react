@@ -1,11 +1,18 @@
 import { Link } from "@tanstack/react-router";
-
 import { LinkProps } from "@tanstack/react-router";
+import clsx from "clsx";
 
-const StyledLink = ({ children, ...props }: LinkProps) => {
+interface StyledLinkProps extends LinkProps {
+  className?: string;
+}
+
+const StyledLink = ({ children, className, ...props }: StyledLinkProps) => {
   return (
     <Link
-      className="flex flex-col items-center transition-colors duration-300 text-slate-200 hover:text-white"
+      className={clsx(
+        "flex flex-col items-center transition-colors duration-300 text-slate-200 hover:text-white",
+        className
+      )}
       {...props}
     >
       {children}
